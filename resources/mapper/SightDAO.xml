@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.dao.SightDAO">
+	<resultMap id="SightMap" type="Sight">
+		<id property="s_id" column="s_id" />
+		<result property="s_name" column="s_name" />
+		<result property="s_imgurl" column="s_imgurl" />
+		<result property="s_info" column="s_info" />
+	</resultMap>
+	<select id="GetAllSightList" resultMap="SightMap">
+		select * from sight
+	</select>
+	<select id="getAllSight" resultMap="SightMap">
+		select * from sight
+	</select>
+	<select id="getSightBySName" resultMap="SightMap"
+		parameterType="String">
+		select * from sight where
+		s_name=#{s_name}
+	</select>
+	<select id="getSightById" parameterType="String"
+		resultType="Sight">
+		select * from sight where
+		s_id=#{s_id}
+	</select>
+	<delete id="deleteSight" parameterType="String">
+		delete from sight where
+		s_id=#{s_id}
+	</delete>
+	<insert id="addSight" parameterType="String">
+		insert into sight(
+		s_name,
+		s_imgurl,
+		s_info
+		)
+		values(#{s_name},
+		#{s_imgurl},
+		#{s_info}
+		)
+	</insert>
+	<select id="findSbyName" parameterType="String"
+		resultType="Sight">
+		select s_imgurl,s_info
+		from sight
+		where s_name=#{s_name}
+	</select>
+	<update id="updateSight" parameterType="String">
+		update sight
+		<set>
+			<if test="s_name!=null">
+				s_name=#{s_name},
+			</if>
+			<if test="s_imgurl!=null">
+				s_imgurl=#{s_imgurl},
+			</if>
+			<if test="s_info!=null">
+				s_info=#{s_info}
+			</if>
+		</set>
+		where s_id=#{s_id}
+	</update>
+	<select id="SelectSight" parameterType="String"
+		resultMap="SightMap">
+		select *
+		from sight
+		where s_name like
+		CONCAT(CONCAT('%',#{str},'%'));
+	</select>
+	<select id="getTidSname" resultType="java.util.Map">
+		select DISTINCT t_id,s_name
+		FROM ticket,sight
+		where ticket.s_id=sight.s_id
+	</select>
+	<!-- 根据分页数据start 和size查询数据 -->
+	<select id="findByPage" parameterType="Map"
+		resultMap="SightMap">
+		select *
+		from sight
+		order by s_id DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<!-- 查询记录总数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from sight
+	</select>
+</mapper>

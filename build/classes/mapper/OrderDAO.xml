@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.dao.OrderDAO">
+	<resultMap type="Order" id="OrderMap">
+		<id property="o_id" column="o_id" />
+		<result property="u_id" column="u_id" />
+		<result property="t_id" column="t_id" />
+		<result property="o_num" column="o_num" />
+		<result property="order_state" column="order_state" />
+		<result property="pay_state" column="pay_state" />
+		<result property="use_state" column="use_state" />
+		<result property="order_time" column="order_time" />
+	</resultMap>
+
+	<select id="findTrueByU" parameterType="String" resultMap="OrderMap">
+		select * from orders
+		where u_id=#{u_id} and pay_state=1 and order_state=1 and use_state=1
+	</select>
+	<select id="GetAllOrderList" resultMap="OrderMap">
+		select * from orders
+	</select>
+	<select id="getOrderById" parameterType="String"
+		resultType="Order">
+		select * from orders where
+		o_id=#{o_id}
+	</select>
+	<delete id="deleteOrder" parameterType="String">
+		delete from orders where
+		o_id=#{o_id}
+	</delete>
+	<insert id="addOrder" parameterType="String">
+		insert into orders(
+		u_id,
+		t_id,
+		o_num,
+		order_state,
+		pay_state,
+		use_state,
+		order_time
+		)
+		values(
+		#{u_id},
+		#{t_id},
+		#{o_num},
+		#{order_state},
+		#{pay_state},
+		#{use_state},
+		#{order_time}
+		)
+	</insert>
+	<update id="updateOrder" parameterType="String">
+		update orders
+		<set>
+			<if test="u_id!=null">
+				u_id=#{u_id},
+			</if>
+			<if test="t_id!=null">
+				t_id=#{t_id},
+			</if>
+			<if test="o_num!=null">
+				o_num=#{o_num},
+			</if>
+			<if test="order_state!=null">
+				order_state=#{order_state},
+			</if>
+			<if test="pay_state!=null">
+				pay_state=#{pay_state},
+			</if>
+			<if test="use_state!=null">
+				use_state=#{use_state},
+			</if>
+		</set>
+		where o_id=#{o_id}
+	</update>
+
+	<!-- 查询售出最多的类型票 -->
+	<select id="getRecentTickets" resultMap="OrderMap">
+		select t_id,sum(o_num) as o_num
+		from orders
+		group by t_id
+		order by sum(o_num) desc
+		limit 6
+	</select>
+	
+	<!-- 不指定票的id -->
+	<select id="findAllTicketsSaled" resultMap="OrderMap">
+		select t_id,sum(o_num) as o_num
+		from orders 
+		group by t_id
+	</select>
+	<!-- 查询所有订单 -->
+
+	<select id="findAllorders" resultMap="OrderMap">
+		select *
+		from orders
+	</select>
+
+	<select id="getOrderByUId" parameterType="Map"
+		resultMap="OrderMap">
+		select *
+		from orders
+		<if test="u_id!=null">
+			where u_id=#{u_id}
+		</if> 
+		<if test="UId!=null">
+			where u_id = #{UId}
+		</if>
+		<if test="pageSize!=0 and pageSize!=null">
+			limit #{pageStr},#{pageSize}
+		</if>
+	</select>
+	<select id="getOrderByTId" parameterType="String"
+		resultMap="OrderMap">
+		select *
+		from orders
+		where t_id=#{t_id}
+	</select>
+	<select id="getOrderByOrderState" parameterType="String"
+		resultMap="OrderMap">
+		select *
+		from orders
+		where order_state=#{order_state}
+	</select>
+	<select id="getOrderByPayState" parameterType="String"
+		resultMap="OrderMap">
+		select *
+		from orders
+		where pay_state=#{pay_state}
+	</select>
+	<select id="getOrderByUseState" parameterType="String"
+		resultMap="OrderMap">
+		select *
+		from orders
+		where use_state=#{use_state}
+	</select>
+	<!-- 更改订单状态 -->
+	<update id="updateOrderstate" parameterType="String">
+		update orders
+		<set>
+			order_state=0
+		</set>
+		where o_id=#{o_id}
+	</update>
+	<!-- 更改c出票状态状态 -->
+	<update id="updateUse" parameterType="String">
+		update orders
+		<set>
+			use_state=1
+		</set>
+		where o_id=#{o_id}
+	</update>
+	<!-- 更改支付状态 -->
+	<update id="updatePay">
+		update orders
+		<set>
+			pay_state=1
+		</set>
+		where o_id=#{o_id}
+	</update>
+	<select id="findTicketsSaled">
+		select sum(o_num)
+		from orders
+		where t_id=#{t_id}
+	</select>
+	<select id="getNum" resultType="java.util.Map">
+		select s_name,SUM(o_num)
+		FROM
+		orders,ticket,sight
+		where orders.t_id=ticket.t_id and
+		ticket.s_id=sight.s_id and pay_state='1' and order_state='1'
+		GROUP BY s_name
+	</select>
+	<select id="getMan" resultType="java.util.Map">
+		select
+		sum(o_num),t_price,order_time,exp(log(sum(o_num))+log(t_price)) man
+		FROM orders,ticket
+		where orders.t_id=ticket.t_id and pay_state='1' and order_state='1'
+		GROUP BY order_time
+		Order By order_time
+	</select>
+	
+		<insert id="UseraddOrder" parameterType="String">
+		insert into orders(
+		u_id,
+		t_id,
+		o_num,
+		order_state,
+		pay_state,
+		use_state,
+		order_time,
+		o_u_time
+		)
+		values(
+		#{u_id},
+		#{t_id},
+		#{o_num},
+		#{order_state},
+		#{pay_state},
+		#{use_state},
+		#{order_time},
+		#{o_u_time}
+		)
+	</insert>
+	<!-- 根据分页数据start 和size查询数据 -->
+	<select id="findByPage" parameterType="Map" resultMap="OrderMap">
+		select *
+		from orders
+		group by o_id DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<!-- 查询记录总数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from orders
+	</select>
+</mapper>

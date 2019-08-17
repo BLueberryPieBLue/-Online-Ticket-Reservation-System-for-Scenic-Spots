@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.dao.TicketDAO">
+	<resultMap id="TicketMap" type="Ticket">
+		<id property="t_id" column="t_id" />
+		<result property="s_id" column="s_id" />
+		<result property="t_price" column="t_price" />
+		<result property="t_status" column="t_status" />
+		<result property="t_num" column="t_num" />
+		<result property="t_imgurl" column="t_imgurl" />
+		<result property="t_time_start" column="t_time_start" />
+		<result property="t_time_end" column="t_time_end" />
+		<result property="t_category" column="t_category" />
+	</resultMap>
+	<select id="GetAllTicketList" resultMap="TicketMap">
+		select * from ticket
+	</select>
+	<select id="getTicketBySId" parameterType="String"
+		resultMap="TicketMap">
+		select * from ticket where
+		s_id=#{s_id}
+	</select>
+	<select id="getTicketByTStatus" parameterType="String"
+		resultMap="TicketMap">
+		select * from ticket where
+		t_status=#{t_status}
+	</select>
+	<select id="getTicketByTCategory" parameterType="String"
+		resultMap="TicketMap">
+		select * from ticket where
+		t_category=#{t_category}
+	</select>
+	<select id="getTicketById" parameterType="String"
+		resultType="Ticket">
+		select * from ticket where
+		t_id=#{t_id}
+	</select>
+	<delete id="deleteTicket" parameterType="String">
+		delete from ticket where
+		t_id=#{t_id}
+	</delete>
+	<insert id="addTicket" parameterType="String">
+		insert into ticket(
+		s_id,
+		t_price,
+		t_status,
+		t_num,
+		t_imgurl,
+		t_time_start,
+		t_time_end,
+		t_category
+		)
+		values(#{s_id},
+		#{t_price},
+		#{t_status},
+		#{t_num},
+		#{t_imgurl},
+		#{t_time_start},
+		#{t_time_end},
+		#{t_category}
+		)
+	</insert>
+	<update id="updateTicket" parameterType="String">
+		update ticket
+		<set>
+			<if test="s_id!=null">
+				s_id=#{s_id},
+			</if>
+			<if test="t_price!=null">
+				t_price=#{t_price},
+			</if>
+			<if test="t_status!=null">
+				t_status=#{t_status},
+			</if>
+			<if test="t_num!=null">
+				t_num=#{t_num},
+			</if>
+			<if test="t_imgurl!=null">
+				t_imgurl=#{t_imgurl},
+			</if>
+		</set>
+		where t_id=#{t_id}
+	</update>
+	<select id="ufindSbT" resultType="int">
+		select s_id from ticket where
+		t_id=#{t_id}  
+		
+	</select>
+	<select id="findTicketsAll" parameterType="String" resultType="Ticket">
+		select * from ticket where s_id=#{s_id}
+	</select>
+	<!-- 根据分页数据start 和size查询数据 -->
+	<select id="findByPage" parameterType="Map"
+		resultMap="TicketMap">
+		select *
+		from ticket
+		order by t_id DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<!-- 查询记录总数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from ticket
+	</select>
+</mapper>

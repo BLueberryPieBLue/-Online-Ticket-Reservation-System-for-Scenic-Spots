@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xn.dao.MessageDAO">
+	<resultMap type="Message" id="MessageMap">
+		<id property="m_id" column="m_id" />
+		<result property="u_id" column="u_id" />
+		<result property="m_time" column="m_time" />
+		<result property="m_title" column="m_title" />
+		<result property="m_info" column="m_info" />
+		<result property="m_imgurl" column="m_imgurl" />
+	</resultMap>
+
+	<select id="GetAllMessageList" resultMap="MessageMap">
+		select * from message
+		Order By m_id DESC
+	</select>
+	<select id="getMessageById" parameterType="String"
+		resultType="Message">
+		select * from message where
+		m_id=#{m_id}
+	</select>
+	<delete id="deleteMessage" parameterType="String">
+		delete from message
+		where
+		m_id=#{m_id}
+	</delete>
+	<insert id="addMessage" parameterType="Message">
+		insert into message(
+		u_id,
+		m_time,
+		m_title,
+		m_info,
+		m_imgurl
+		)
+		values(
+		#{u_id},
+		#{m_time},
+		#{m_title},
+		#{m_info},
+		#{m_imgurl}
+		)
+	</insert>
+	<update id="updateMessage" parameterType="Message">
+		update message
+		<set>
+			<if test="m_time!=null">
+				m_time=#{m_time},
+			</if>
+			<if test="m_title!=null">
+				m_title=#{m_title},
+			</if>
+			<if test="m_info!=null">
+				m_info=#{m_info},
+			</if>
+			<if test="m_imgurl!=null">
+				m_imgurl=#{m_imgurl},
+			</if>
+		</set>
+		where m_id=#{m_id}
+	</update>
+	<!-- 根据分页数据start 和size查询数据 -->
+	<select id="findByPage" parameterType="Map" resultMap="MessageMap">
+		select *
+		from message
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<!-- 查询记录总数 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from message
+	</select>
+</mapper>

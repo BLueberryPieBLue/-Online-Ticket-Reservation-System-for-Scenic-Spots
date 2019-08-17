@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!--加载静态资源 -->
+	<context:property-placeholder
+		location="classpath:dbconfig.properties" />
+
+	<!--配置c3p0数据源 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property><!-- 用户名 -->
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property><!-- 连接地址 -->
+		<property name="driverClass" value="${jdbc.driverClass}"></property><!-- 加载驱动 -->
+		<property name="password" value="${jdbc.password}"></property><!-- 密码 -->
+
+		<!-- 初始化时获取连接数，取值应在minPoolSize与maxPoolSize之间.Default: 3 -->
+		<property name="initialPoolSize" value="5"></property>
+		<!-- 连接池中保留的最大连接数.默认值: 15 -->
+		<property name="maxPoolSize" value="10"></property>
+		<!-- 连接池中保留的最小连接数,默认为：3 -->
+		<property name="minPoolSize" value="3"></property>
+		<!-- 最大空闲时间，多少秒内未使用则连接被丢弃.若为0则永不丢弃.默认值: 0 -->
+		<property name="maxIdleTime" value="60"></property>
+		<!-- c3p0全局的PreparedStatements缓存的大小.如果maxStatements与maxStatementsPerConnection均为0 -->
+		<!-- 则缓存不生效，只要有一个不为0，则语句的缓存就能生效.如果默认值: 0 -->
+		<property name="maxStatements" value="0"></property>
+		<!-- c3p0是异步操作的，缓慢的JDBC操作通过帮助进程完成.扩展这些操作可以有效的提升性能通过多线程实现多个操作同时被执行.Default: 
+			3 -->
+		<property name="numHelperThreads" value="5"></property>
+		<!-- 定义在从数据库获取新连接失败后重复尝试的次数.默认值: 30;小于等于0表示无限次 -->
+		<property name="acquireRetryAttempts" value="5"></property>
+		<!-- 尝试重新连接的时间间隔 单位是毫秒 默认为1000毫秒 -->
+		<property name="acquireRetryDelay" value="1000"></property>
+		<!-- 获取一个connection需要的时间,单位毫秒 -->
+		<property name="checkoutTimeout" value="1000000000"></property>
+		<!-- 每隔多少秒检查所有连接池中的空闲连接,单位毫秒.Default: 0 -->
+		<property name="idleConnectionTestPeriod" value="300"></property>
+	</bean>
+
+	<!--配置MyBatis的SqlSessionFactory -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--指定MyBatis数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!--指定MyBatis的映射文件位置 -->
+		<property name="mapperLocations"
+			value="classpath:mapper/*.xml" />
+		<!--指定MyBatis的全局配置文件的位置 -->
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml"></property>
+	</bean>
+
+	<!--扫描MyBatis的mapper接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--扫描所有的dao接口，加入IOC容器 -->
+		<property name="basePackage" value="com.xn.dao" />
+	</bean>
+
+	<!--配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!--指定数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!--配置事务增加 -->
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+			<!--配置所有方法都是事务方法 -->
+			<tx:method name="*" />
+			<tx:method name="get" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!--开启基于注解的事务 -->
+	<aop:config>
+		<!--切入点表达式 -->
+		<aop:pointcut id="txPoint"
+			expression="execution(* com.xn.service.impl.*.*(..))" />
+		<!--配置事务增加 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
+	</aop:config>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置默认编码 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- 上传图片最大大小5M -->
+		<property name="maxUploadSize" value="5242440"></property>
+	</bean>
+</beans>

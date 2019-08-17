@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html class="" lang="en">
+<head>
+	<meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<title>景点门票预定系统</title>
+
+	<!-- Standard Favicon -->
+	<link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+	
+	<!-- For iPhone 4 Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+	
+	<!-- For iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+	
+	<!-- For iPhone: -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57x57-precomposed.png">
+	
+	<link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
+ 
+	<!-- RS5.0 Layers and Navigation Styles -->
+	<link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
+	<link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+	
+	<!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="libraries/lib.css">
+	
+	<!-- Custom - Common CSS -->
+	<link rel="stylesheet" type="text/css" href="css/plugins.css">
+	<link rel="stylesheet" type="text/css" href="css/navigation-menu.css">	
+	
+	<!-- Custom - Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation" onload="getKey()">
+	
+	<!-- Header -->
+	<header class="header-section container-fluid no-padding">
+		<!-- Top Header -->
+		<div class="top-header container-fluid no-padding">
+			<!-- Container -->
+			<div class="container">
+				<!-- Social -->
+				<div class="col-md-7 col-sm-6 col-xs-12 info">
+					<p><i class="icon icon-Pointer"></i>中国山东省淄博市张店区山东理工大学</p>
+					<p><i class="icon icon-Phone2"></i><a href="tel:(+86)15615633929" title="Phone" class="phone">(+86)15615633929</a></p>
+				</div>
+				<div id="myhead" class="col-md-5 col-sm-6 col-xs-12 header-social"> 
+					<ul>
+						<li><p id="userName"><a href="denglu.html">登录</a></p></li>
+						<li><a href="zhuce.html"><p>注册</p></a></li>
+					</ul>
+				</div><!-- Social /- -->
+			</div><!-- Container /- -->
+		</div><!-- Top Header /- -->
+		
+		<!-- Menu Block -->
+		<div class="menu-block container-fluid">
+			<!-- Container -->
+			<div class="container">
+				<!-- Navigation -->
+				<nav class="navbar ow-navigation">
+					<div class="navbar-header">
+						
+						<a title="Logo1" href="index.html" class="navbar-brand"><img src="img/logo.png" width="219px" height="89px"></a>
+					</div>
+					<div class="navbar-collapse collapse" id="navbar">
+						<ul class="nav navbar-nav">
+							<li class="dropdown active">
+								<a href="index.html"  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
+								<i class="ddl-switch fa fa-angle-down"></i>
+							</li>
+							<li><a  href="jingdian.html">景点预览</a></li>
+							
+							<li class="dropdown">
+								<a href="tupian.html"  class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">热门景点</a>
+								<i class="ddl-switch fa fa-angle-down"></i>
+							</li>
+							<li class="dropdown">
+								<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle"  href="liuyan.html">游客留言</a>
+								<i class="ddl-switch fa fa-angle-down"></i>
+				
+							</li>
+							<li><a title="Contact" href="contact-us.html">联系我们</a></li>
+						</ul>						
+					</div>
+				</nav><!-- Navigation -->
+			</div>
+		</div><!-- Menu Block /- -->
+	</header><!-- Header /- -->
+	
+	<main>
+		<!-- Slider Section 2 -->
+		<div id="home-revslider" class="slider-section container-fluid no-padding">
+			<!-- START REVOLUTION SLIDER 5.0 -->
+			<div class="rev_slider_wrapper">
+				<div id="home-slider1" class="rev_slider" data-version="5.0">
+					<ul>
+						<li data-transition="zoomout" data-slotamount="default"  data-easein="easeInOut" data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7">
+							<img src="img/slider-1.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+							<!-- LAYERS -->
+							<!-- LAYER NR. 1 -->
+							<div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-0"
+								data-x="['center','center','center','center']" 
+								data-y="['middle','middle','middle','middle']" 
+								data-basealign="slide" 
+								data-height="full" 
+								data-hoffset="['0','0','0','0']" 
+								data-responsive="off" 
+								data-responsive_offset="off" 
+								data-start="0" 
+								data-transform_idle="o:1;" 
+								data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" 
+								data-transform_out="opacity:0;s:500;s:500;" 
+								data-voffset="['0','0','0','0']" 
+								data-whitespace="nowrap" 
+								data-width="full"
+								style="z-index: 5;background-color:rgba(0, 0, 0, 0.502);">
+							</div>
+							<!-- LAYER NR. 2 -->
+							<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0" id="slide-layer-1" 
+								data-x="['left','left','left','left']" data-hoffset="['400','125','100','70']" 
+								data-y="['middle','middle','middle','middle']" data-voffset="['-200','-80','-100','-100']" 
+								data-fontsize="['54','40','30','20']"
+								data-lineheight="['70','60','60','60']"
+								data-fontweight="['600','600','600','600']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" 
+								data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+								data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" 
+								data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+								data-start="1000" 
+								data-splitin="chars" 
+								data-splitout="none" 
+								data-responsive_offset="on"
+								data-elementdelay="0.05" 
+								style="z-index: 5; white-space: nowrap; color:#fff; font-family: 'Open Sans', sans-serif; text-transform: uppercase">we are your partner to find a  
+							</div>
+							<!-- LAYER NR. 3 -->
+							<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0" id="slide-layer-2" 
+								data-x="['left','left','left','left']" data-hoffset="['400','125','100','70']" 
+								data-y="['top','top','top','top']" data-voffset="['275','300','215','150']" 
+								data-fontsize="['54','45','30','20']"
+								data-fontweight="['400','400','400','400']"
+								data-lineheight="['76','24','24','24']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_in="y:-50px;opacity:0;s:1000;e:Power4.easeOut;" 
+								data-transform_out="opacity:0;s:3000;e:Power4.easeIn;s:3000;e:Power4.easeIn;"
+								data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" 
+								data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+								data-start="1000" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-responsive_offset="on"
+								data-elementdelay="0.05" 
+								style="z-index: 5; color:#fff; font-family: 'Open Sans', sans-serif; text-transform:uppercase;">tourist attraction
+							</div>
+							<!-- LAYER NR. 4 -->
+							<div class="tp-caption NotGeneric-Button rev-btn  rs-parallaxlevel-0" id="slide-layer-3" 
+								data-x="['left','left','left','left']" data-hoffset="['400','125','100','70']" 
+								data-y="['top','top','top','top']" data-voffset="['400','375','280','215']" 
+								data-fontsize="['16','12','12','12']"
+								data-fontweight="['600','600','600','600']"
+								data-lineheight="['28','20','20','20']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:100;e:Power1.easeInOut;"
+								data-style_hover="c:rgba(162, 144, 97, 1.00);bg:rgba(255, 255, 255, 1.00);"
+								data-transform_in="x:[-100%];z:0;rX:0deg;rY:0deg;rZ:0deg;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2500;e:Power3.easeInOut;" 
+								data-transform_out="auto:auto;s:1000;e:Power2.easeInOut;" 
+								data-start="2000" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-actions='[{"event":"click","action":"scrollbelow","offset":"0px"}]'
+								data-responsive_offset="on" 
+								data-responsive="off"
+								style="z-index: 10; padding:8px 33px; letter-spacing:0.16px; color: #fff; font-family: 'Open Sans', sans-serif; text-transform:uppercase; background-color:transparent; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">explore it
+							</div>
+						</li>
+						
+						<li data-transition="zoomout" data-slotamount="default"  data-easein="easeInOut" data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7">
+							<img src="img/slider-3.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+							<div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-4"
+								data-x="['center','center','center','center']" 
+								data-y="['middle','middle','middle','middle']" 
+								data-basealign="slide" 
+								data-height="full" 
+								data-hoffset="['0','0','0','0']" 
+								data-responsive="off" 
+								data-responsive_offset="off" 
+								data-start="0" 
+								data-transform_idle="o:1;" 
+								data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" 
+								data-transform_out="opacity:0;s:500;s:500;" 
+								data-voffset="['0','0','0','0']" 
+								data-whitespace="nowrap" 
+								data-width="full"
+								style="z-index: 5;background-color:rgba(0, 0, 0, 0.702);">
+							</div>
+							<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0" id="slide-layer-5" 
+								data-x="['left','left','left','left']" data-hoffset="['550','125','100','35']" 
+								data-y="['middle','middle','middle','middle']" data-voffset="['-215','-80','-100','-100']" 
+								data-fontsize="['50','30','25','15']"
+								data-lineheight="['72','45','35','25']"
+								data-fontweight="['600','600','600','600']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" 
+								data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+								data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" 
+								data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+								data-start="1000" 
+								data-splitin="chars" 
+								data-splitout="none" 
+								data-responsive_offset="on"
+								data-elementdelay="0.05" 
+								style="z-index: 5; white-space: nowrap; color:#fff; font-family: 'Open Sans', sans-serif;">Fifty tourist attractions,<br>Twenty-Two Countries,<br>One Philosophy.   
+							</div>
+							<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0" id="slide-layer-6" 
+								data-x="['left','left','left','left']" data-hoffset="['550','125','100','35']" 
+								data-y="['middle','middle','middle','middle']" data-voffset="['-50','40','10','10']" 
+								data-fontsize="['18','18','20','16']"
+								data-lineheight="['24','24','24','24']"
+								data-fontweight="['300','300','300','300']"
+								data-width="['1920','1024','768','400']"
+								data-height="none"
+								data-whitespace="normal"
+								data-transform_idle="o:1;"
+								data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" 
+								data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+								data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" 
+								data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+								data-start="1000" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-responsive_offset="on"
+								data-elementdelay="0.05" 
+								style="z-index: 5; white-space: normal; letter-spacing: 0.45px; word-wrap: break-word; min-width: 1920px; max-width: 1920px; color:#fff; font-family: 'Open Sans', sans-serif; font-style:italic;">
+								So my friends, choosing us will be the choice you <br>will never regret, <br>and you will have a wonderful holiday here.
+							</div>
+							<div class="tp-caption NotGeneric-Button rev-btn  rs-parallaxlevel-0" id="slide-layer-7" 
+								data-x="['left','left','left','left']" data-hoffset="['550','125','100','35']" 
+								data-y="['top','top','top','top']" data-voffset="['480','454','375','330']" 
+								data-fontsize="['16.2','12','12','12']"
+								data-fontweight="['600','600','600','600']"
+								data-lineheight="['28','20','20','20']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:100;e:Power1.easeInOut;"
+								data-style_hover="c:rgba(162, 144, 97, 1.00);bg:rgba(255, 255, 255, 1.00);"
+								data-transform_in="x:[-100%];z:0;rX:0deg;rY:0deg;rZ:0deg;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2500;e:Power3.easeInOut;" 
+								data-transform_out="auto:auto;s:1000;e:Power2.easeInOut;" 
+								data-start="2000" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-actions='[{"event":"click","action":"scrollbelow","offset":"0px"}]'
+								data-responsive_offset="on" 
+								data-responsive="off"
+								style="z-index: 10; padding:8px 33px; letter-spacing:0.405px; color: #fff; font-family: 'Open Sans', sans-serif; text-transform:uppercase; background-color:transparent; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">contact us
+							</div>
+						</li>
+						
+						<li data-transition="zoomout" data-slotamount="default"  data-easein="easeInOut" data-easeout="easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7">
+							<img src="img/slider-4.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+							<!-- LAYERS -->
+							<!-- LAYER NR. 1 -->
+							<div class="tp-caption tp-shape tp-shapewrapper" id="slide-layer-8"
+								data-x="['center','center','center','center']" 
+								data-y="['middle','middle','middle','middle']" 
+								data-basealign="slide" 
+								data-height="full" 
+								data-hoffset="['0','0','0','0']" 
+								data-responsive="off" 
+								data-responsive_offset="off" 
+								data-start="0" 
+								data-transform_idle="o:1;" 
+								data-transform_in="opacity:0;s:2000;e:Power2.easeInOut;" 
+								data-transform_out="opacity:0;s:500;s:500;" 
+								data-voffset="['0','0','0','0']" 
+								data-whitespace="nowrap" 
+								data-width="full"
+								style="z-index: 5;background-color:rgba(0, 0, 0, 0.6);">
+							</div>
+							<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0" id="slide-layer-9" 
+								data-x="['left','left','left','left']" data-hoffset="['550','125','100','55']" 
+								data-y="['middle','middle','middle','middle']" data-voffset="['-135','-80','-100','-100']" 
+								data-fontsize="['50','30','25','20']"
+								data-lineheight="['72','45','35','25']"
+								data-fontweight="['600','600','600','600']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_in="x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power4.easeInOut;" 
+								data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+								data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" 
+								data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+								data-start="1000" 
+								data-splitin="chars" 
+								data-splitout="none" 
+								data-responsive_offset="on"
+								data-elementdelay="0.05" 
+								style="z-index: 5; white-space: nowrap; color:#fff; font-family: 'Open Sans', sans-serif;">Discover a Hotel that Defines a<br>New Dimension of Luxury   
+							</div>
+							<div class="tp-caption NotGeneric-Button rev-btn  rs-parallaxlevel-0" id="slide-layer-10" 
+								data-x="['left','left','left','left']" data-hoffset="['550','125','100','55']" 
+								data-y="['top','top','top','top']" data-voffset="['430','330','250','200']" 
+								data-fontsize="['16.2','12','12','12']"
+								data-fontweight="['600','600','600','600']"
+								data-lineheight="['28','20','20','20']"
+								data-width="none"
+								data-height="none"
+								data-whitespace="nowrap"
+								data-transform_idle="o:1;"
+								data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:100;e:Power1.easeInOut;"
+								data-style_hover="c:rgba(162, 144, 97, 1.00);bg:rgba(255, 255, 255, 1.00);"
+								data-transform_in="x:[-100%];z:0;rX:0deg;rY:0deg;rZ:0deg;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2500;e:Power3.easeInOut;" 
+								data-transform_out="auto:auto;s:1000;e:Power2.easeInOut;" 
+								data-start="2000" 
+								data-splitin="none" 
+								data-splitout="none" 
+								data-actions='[{"event":"click","action":"scrollbelow","offset":"0px"}]'
+								data-responsive_offset="on" 
+								data-responsive="off"
+								style="z-index: 10; padding:8px 33px; letter-spacing:0.405px; color: #fff; font-family: 'Open Sans', sans-serif; text-transform:uppercase; background-color:transparent; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">contact us
+							</div>
+						</li>
+					</ul>
+				</div><!-- END REVOLUTION SLIDER -->
+			</div><!-- END OF SLIDER WRAPPER -->
+			<!-- Booking Section 1 -->
+			<div class="booking-section-1 container-fluid">
+				
+			</div><!-- Booking Section 1 -->
+		</div><!-- Slider Section 2 /- -->
+		
+		<!-- Welcome Section -->
+		<div class="welcome-section container-fluid">
+			<!-- Container -->
+			<div class="container">
+				<!-- Section Header -->
+				<div class="section-header section-header-2"style="margin:10px 0 0 0;">
+					<h3>欢迎来到<span>一起玩吧</span> 门票预订</h3>
+				</div><!-- Section Header /- -->
+				<div class="welcome-content" style="height:100px;">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提供国内齐全的景点门票预订,最低3折!在线预订,景点取票,发表点评得奖金且可提现!同一景点门票,自驾,跟团线路随您自由组合,一张门票也打折!
+					在线预订打折旅游景点门票,支持直接景点取票付款。发表游玩点评还可获得点评代金劵哦!全国热门旅游景点介绍、最新景区门票价格、景点门票预订.</p>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-6 welcome-outer">
+					<div class="welcome-box">
+						
+						<p>最佳门票预订网站大奖得主</p>
+						<i class="icon icon-Cup"></i>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-6 welcome-outer">
+					<div class="welcome-box">
+						
+						<p>集门票预订和行程安排于一体</p>
+						<i class="icon icon-Starship"></i>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-6 welcome-outer">
+					<div class="welcome-box">
+						
+						<p>最高的优惠、最低的成本</p>
+						<i class="icon icon-Bag"></i>
+					</div>
+				</div>
+			</div><!-- Container / -->
+		</div><!-- Welcome Section /- -->
+		
+	</main>
+	
+	<!-- Footer Main -->
+	<footer id="footer-main" class="footer-main container-fluid no-padding">
+		<!-- Top Footer -->
+		<div class="top-footer">
+			<!-- Container -->
+			<div class="container">
+				<!-- Widget About -->
+				<aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_about">
+					<h3 class="widget-title">about our <span>YQWB</span></h3>
+					<p>Offers the domestic complete scenic spot ticket reservation, the minimum discount 3! Online booking, scenic spots to get tickets, comments and bonuses can be withdrawn! The same scenic spot ticket, self-driving, with the group line with your free combination, a ticket is also discounted!   </p>
+					<ul>
+						<li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" title="Google"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</aside><!-- Widget About /- -->
+				<!-- Widget Links -->
+				<aside class="col-md-2 col-sm-6 col-xs-6 ftr-widget widget_links">
+					<h3 class="widget-title">常用 <span>选项</span></h3>
+					<ul>
+						<li><a href="#" title="About Us">关于我们</a></li>
+						<li><a href="#" title="Popular Destination">热门景点</a></li>
+						<li><a href="#" title="Top Destination">景点排名</a></li>
+						<li><a href="#" title="Latest News">景点新闻</a></li>
+						<li><a href="#" title="Our Gallery">景点照片</a></li>
+					</ul>
+				</aside><!-- Widget Links -->
+				<!-- Widget Hours -->
+				<aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_hours">
+					<h3 class="widget-title">开放 <span>时间</span></h3>
+					<p>星期一 <span>-</span> 早晨九点到晚上六点</p>
+					<p>星期二 <span>-</span> 早晨九点到晚上六点</p>
+					<p>星期三 <span>-</span> 早晨九点到晚上六点</p>
+					<p>星期四 <span>-</span> 早晨九点到晚上六点</p>
+					<p>星期五 <span>-</span> 早晨九点到晚上六点</p>
+					<p>星期六 <span>-</span> 早晨九点到晚上六点</p>
+				</aside><!-- Widget Hours /- -->
+				<!-- Widget Destination -->
+				<aside class="col-md-4 col-sm-6 col-xs-6 ftr-widget widget_destination">
+					<h3 class="widget-title">热门 <span>照片</span></h3>
+					<ul>
+						<li><a href="#" title=""><img src="img/desti-1.jpg" alt="desti"></a></li>
+						<li><a href="#" title=""><img src="img/desti-2.jpg" alt="desti"></a></li>
+					</ul>
+				</aside><!-- Widget Destination /- -->
+			</div><!-- Container /- -->
+		</div><!-- Top Footer /- -->
+		
+		<div class="bottom-footer container-fluid">
+			<!-- Container -->
+			<div class="container">
+				<div class="col-md-3 col-sm-12 col-xs-12 coyright-content">
+					<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" >一起玩吧</a> - Collect from <a href="http://www.cssmoban.com/" title="网页" target="_blank">网页</a></p>
+				</div>
+				<div class="col-md-9 col-sm-12 col-xs-12">
+					<!-- nav -->
+					<nav class="navbar navbar-default ow-navigation">
+						<div class="navbar-collapse collapse" id="ftr-navbar">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="index.html" title="Home">首页</a></li>
+								<li><a href="jingdian.html" title="About Us">景点预览</a></li>
+								
+								<li><a href="tupian.html" title="Services">景点图片</a></li>
+								<li><a href="liuyan.html" title="Gallery">游客留言</a></li>
+								<li><a href="contact-us.html" title="Contact">联系我们</a></li>
+							</ul>
+						</div><!--/.nav-collapse -->
+					</nav><!-- nav /- -->
+				</div>
+			</div><!-- Container -->
+		</div>
+	</footer><!-- Footer Main /- -->
+
+	<!-- JQuery v1.11.3 -->
+	<script src="js/jquery.min.js"></script>
+
+	<!-- Library - Js -->
+	<script src="libraries/lib.js"></script><!-- 	Bootstrap JS File v3.3.5 -->
+	
+	<!-- RS5.0 Core JS Files -->
+	<script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+	<script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+	<script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>
+	<script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script type="text/javascript" src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
+
+	<!-- Library - Google Map API -->
+	<!---<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyDW40y4kdsjsz714OVTvrw7woVCpD8EbLE"></script>--->
+	
+	<!-- Library - Theme JS -->
+	<script src="js/functions.js"></script>
+	<script src="js/amy.js"></script>
+</body>
+</html>

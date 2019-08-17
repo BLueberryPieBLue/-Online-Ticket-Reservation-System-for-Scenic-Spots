@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录</title>
+<style type="text/css">
+html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-style: sans-serif;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	background: url(img/login.jpg) no-repeat center center;
+	background-size:100% 100%;
+}
+#login {
+	border-radius: 8px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -150px;
+	width: 300px;
+	height: 300px;
+}
+
+#login h1 {
+	color: darkblue;
+	text-shadow: 0 0 10px;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+
+input {
+	width: 278px;
+	height: 18px;
+	margin-bottom: 10px;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 1px 1px 1px;
+	border-top: 1px solid #312E3D;
+	border-left: 1px solid #312E3D;
+	border-right: 1px solid #312E3D;
+	border-bottom: 1px solid #56536A;
+	border-radius: 4px;
+	background-color: #2D2D3F;
+}
+
+.but {
+	width: 300px;
+	min-height: 20px;
+	display: block;
+	background-color: #4a77d4;
+	border: 1px solid #3762bc;
+	color: #fff;
+	padding: 9px 14px;
+	font-size: 15px;
+	line-height: normal;
+	border-radius: 5px;
+	margin: 0;
+}
+
+#zhuce {
+	float: right;
+	display: block;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+</style>
+<script src="js/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		//window.location.href='static/ccpt_5_bbh/html/index.html';
+	});
+	function login() {
+		$.ajax({
+			url : "/ssm/key",
+			data : {
+				"u_name" : $("#u").val(),
+				"u_password" : $("#p").val()
+			},
+			type : "POST",
+			dataType : "json",
+			success : function(dd) {
+				if (dd) {
+					window.location.href = 'index.html';
+					//window.location.href='index.html?name='+dd.u_name+'&password='+dd.u_password;
+					console.log(dd);
+				}
+			},
+			error : function(err) {
+				alert("密码或用户名错误");
+			}
+		});
+
+	};
+	//     $(document).ready(function(){
+
+	//      });
+</script>
+<meta charset="utf-8">
+</head>
+<body>
+	<div id="login">
+		<h1>一起玩吧门票预定</h1>
+		<form method="post">
+			<input type="text" required="required" placeholder="用户名" name="u"
+				id="u"></input> <input type="password" required="required"
+				placeholder="密码" name="p" id="p"></input>
+			<button class="but" type="button" onClick="login()">登录</button>
+			<a href="index.html">返回首页</a> <a id="zhuce" href="zhuce.html">立即注册</a>
+		</form>
+	</div>
+</body>
+</body>
+</html>

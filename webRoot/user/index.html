@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Paper Dashboard by Creative Tim</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<!--     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'> -->
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+ <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+   <!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="assets/js/paper-dashboard.js"></script>
+
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+ 
+<style type="text/css"> 
+#aa{
+    height: 700px;
+}
+#bb{
+    height: 580px;
+}
+.form-group label{
+    color: black;
+}
+#panel,#flip
+{
+    padding:5px;
+    text-align:center;
+    background-color:#9A9A9A;
+    border:solid 1px #c3c3c3;
+}
+#panel
+{
+    padding:50px;
+    display:none;
+}
+.form-group input{
+    display: inline-block;
+    height: 30px;
+    width: 200px;
+}
+.col-xs-3{
+	width:14%;
+	height:20px;
+	maigin:5px;
+}
+.col-xs-1{
+	width:30%;
+	height:20px;
+	
+}
+.aaa{
+ 
+ width:10%;
+ height:15px;
+ margin-left:55%;
+ padding-right:10%;
+}
+.bbb{
+padding-left:10px;
+}
+.headhaha{
+height:40px;
+color:#66615B;
+font-weight: bold;
+font-size: 1.1em;
+background: rgba(255, 255, 255, 0.14);
+margin-top:10px;
+
+}
+.guding{
+margin-bottom:10%;
+}
+#mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: #666;
+  opacity: 0.5;
+  filter: alpha(opacity=50)-moz-opacity: 0.5;
+  display: none;
+  }
+  .popup {
+  position: absolute;
+  left: 50%;
+  width: 600px;
+  height: 200px;
+  background: #fff;
+  z-index: 1000;
+  border: 1px solid #333;
+  display: none;
+  }
+  .btn_close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  }
+  
+  
+  .file-box .txt,.file-box .file {
+    width: 70px;
+    height: 36px;
+
+    top: -20px;
+    left: 100px;
+    margin-left:80%;
+    text-align: center;
+}
+
+#imgfile{
+padding-left:15%}
+
+
+
+
+/*背景层*/
+
+      #popLayer {
+
+      display: none;
+
+      background-color: #B3B3B3;
+
+ 
+
+      top: 0;
+
+      right: 0;
+
+      bottom: 0;
+
+      left: 0;
+
+      z-index: 10;
+
+      -moz-opacity: 0.8;
+
+      opacity:.80;
+
+      filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+
+  }
+
+
+
+  /*弹出层*/
+
+  #popBox {
+
+      display: none;
+
+      background-color: #9A9A9A;
+
+      z-index: 11;
+
+      width: 200px;
+
+      height: 100px;
+
+
+
+      top:0;
+
+      right:0;
+
+      left:0;
+
+      bottom:0;
+
+      margin:auto;
+
+  }
+
+
+
+  #popBox .close{
+
+      text-align: right;
+
+      margin-right: 5px;
+
+      background-color: #F8F8F8;
+
+  }
+
+
+
+  /*关闭按钮*/
+
+  #popBox .close a {
+
+      text-decoration: none;
+
+      color: #2D2C3B;
+
+  }
+
+
+</style>
+<script type="text/javascript">
+
+
+function readinfo(){
+  var con;
+con=confirm("您确认要修改信息吗?"); //在页面上弹出对话框
+if(con==true){
+	$.ajax({
+		url:"/ssm/editinfo",
+		data:{
+			"u_id":$("#d").val(),
+			"u_name":$("#a").val(),
+			"u_tel":		$("#b").val(),
+			"u_password":		$("#c").val()
+		},
+		type:"POST",
+		dataType:"json",
+		success:function(da){
+			$.ajax({
+				url : "/ssm/key",
+				data : {
+					"u_name" : $("#a").val(),
+					"u_password" : $("#c").val()
+				},
+				type : "POST",
+				dataType : "json",
+				success : function(dd) {
+					$("#name").html(dd.u_name);
+					$("#u_info").html(dd.u_info);
+					$("#a").val(dd.u_name);
+					$("#b").val(dd.u_tel);
+					alert("修改成功！")
+					
+				},
+				error : function(err) {
+					console.log(err, "错误");
+				}
+			});
+		},
+		error:function(err){
+			console.log(err,"出错了");
+		}
+	});
+	
+}
+else{
+	alert("取消信息修改！")
+}
+}
+</script>
+
+
+</head>
+<body onload="getKey()" >
+
+<script>
+function getKey(){
+$.ajax({
+	url:"/ssm/getKey",
+	type:"POST",
+	dataType:"json",
+	success:function(dd){
+
+				$.ajax({
+	            url:"/ssm/SelectUserByUId",
+	            data:{
+	            "UId":dd.u_id,
+	            },
+	            dataType:"json",
+	            type:"POST",
+	            async:false,
+	            success:function(hah){
+	            
+	            $("#u_img").html('<a onclick="popBox()"><img class="avatar border-white" id="u_img" src="../user/images/'+hah.u_img+'" /></ a>');
+	            },
+	            error:function(err){
+	            alert("cuow")
+	            }
+	            });
+				$("#name").html(dd.u_name);
+				$("#u_info").html(dd.u_info);
+				$("#a").val(dd.u_name);
+				$("#b").val(dd.u_tel);
+			
+				$("#d").val(dd.u_id);
+				findAll();
+				
+	}
+});
+
+}
+</script>
+<input type="hidden" id="d" value=""> 
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Directory
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="../main/index.html">
+                        <i class="ti-panel"></i>
+                        <p>返回首页</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="index.html">
+                        <i class="ti-user"></i>
+                        <p>个人中心</p>
+                    </a>
+                </li>
+                 
+				<li>
+                    <a href="table.html">
+                        <i class="ti-view-list-alt"></i>
+                        <p>购物车</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="ti-bell"></i>
+                        <p>立即取票</p>
+                    </a>
+                </li>
+<!--                 <li> -->
+<!--                     <a href="upgrade.html"> -->
+<!--                         <i class="ti-pencil-alt2"></i> -->
+<!--                         <p>历史记录</p> -->
+<!--                     </a> -->
+<!--                 </li> -->
+            </ul>
+            <div>
+            	<dt id="photo"></dt>
+            	<dd id="info"></dd>
+            </div>
+    	</div>
+    	<div>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">User Information</a>
+                </div>
+                
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-5">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="assets/img/background.jpg" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                <div class="file-box">
+                                  <div id="u_img"></div>
+                                  <div id="popLayer"></div>
+
+										<div id="popBox">
+										
+										    <div class="close">
+										
+										        <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+										
+										    </div>
+										    
+										        
+										        <input  type="file" name="file" id="imgfile" ><br>
+										        <button onclick="changeTou()" class="btn btn-info ">确认修改</button>
+										</div>
+								                          
+ </div>
+                                  <h4 class="title" id="name">name<br />
+                                     
+                                  </h4>
+                                </div>
+                                <p class="description text-center" id="u_info">
+                                    empty
+                                </p>
+                
+                            </div>
+                            
+                            <hr>
+                            <div class="text-center">
+                            <div id="flip">修改个人信息</div>
+                            <div id="panel">
+                                <form>
+                                    <div class="row">
+            
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="hidden" name="id" value="" id="d" />
+                                                <input type="text" class="form-control border-input" placeholder="用户名" id="a" value="">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tellphone </label>
+                                                <input type="tel" class="form-control border-input" placeholder="电话号码" id="b" value="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Password </label>
+                                                <input type="tel" class="form-control border-input" placeholder="请输入您的新密码" id="c" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-info btn-fill btn-wd" onClick="readinfo()">确认修改</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                            
+
+
+                                
+
+
+                            </div>
+                        </div>
+                        
+
+                    </div> 
+                    <div class="col-lg-8 col-md-7" id="aa">
+                    
+                        <div class="card" id="aa">
+                            <div class="header">
+                                <h4 class="title"></h4>
+                            </div>
+                            <div class="content" width="200px">
+                                
+                                <div class="card">
+                                
+                            <div class="header">
+                            
+                                <h4 class="title">历史购买记录</h4>
+                            </div>
+                            <div class="content" id="bb" >
+                         
+                                <div class="col-md-12">
+                        <div class="card headhaha">
+                            
+                            
+                             <div class="col-xs-3  headhaha">
+                                景点
+                            </div>
+                            <div class="col-xs-3 headhaha">
+                                数量
+                            </div>
+                            <div class="col-xs-3 headhaha">
+                                出票状态
+                            </div>
+                            <div class="col-xs-3 headhaha">
+                                支付状态
+                            </div>
+                            <div class="col-xs-3 headhaha">
+                                订单状态
+                            </div>
+                            <div class="col-xs-1 headhaha">
+                                订单时间
+                            </div>
+                        </div>
+                        <div  id="historyrecord"   overflow:auto; overflow-x:hidden; ">
+
+                          没有订单
+
+                        </div>
+                        
+                        </div>
+                    </div>
+                    				<div class="text-center">
+                                        <button id="shang" value="" type="button" class="btn btn-info btn-fill btn-wd" onClick="shang()">上一页</button>
+                                        <button id="xia" value="" type="button" class="btn btn-info btn-fill btn-wd" onClick="xia()">下一页</button>
+                                    </div>
+                            </div>
+                            
+                            <div>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <script> 
+  $(document).ready(function(){
+  $("#flip").click(function(){
+   
+    $("#panel").slideDown("slow");
+  });
+});
+
+</script>
+<script>
+//formatTime(1545903266795, 'Y-M-D h:m:s')
+function formatTime (number, format) {
+    let time = new Date(number)
+    let newArr = []
+    let formatArr = ['Y', 'M', 'D', 'h', 'm', 's']
+    newArr.push(time.getFullYear())
+    newArr.push(formatNumber(time.getMonth() + 1))
+    newArr.push(formatNumber(time.getDate()))
+
+    newArr.push(formatNumber(time.getHours()))
+    newArr.push(formatNumber(time.getMinutes()))
+    newArr.push(formatNumber(time.getSeconds()))
+
+    for (let i in newArr) {
+        format = format.replace(formatArr[i], newArr[i])
+    }
+    return format;
+}
+function formatNumber (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n;
+}
+var pageNum =1;
+var pageSize =6;
+$("#shang").val(1);
+function findAll(){
+		
+$.ajax({
+	url:"/ssm/getOrderByUId",
+	
+	data:{
+		"u_id":$("#d").val(),
+		'pageNum':$("#shang").val(),
+		'pageSize':pageSize
+	},
+	type : "POST",
+	dataType : "json",
+	success:function(dat){
+		var len=dat.length;
+		
+		var str='';
+		for(i=0;i<len;i++){
+		if(dat[i].pay_state==1){
+		var name='';
+		$.ajax({
+		url:"/ssm/findSnameBt",
+		data:{
+			't_id':dat[i].t_id
+			
+		},
+		type:"POST",
+		dataType:"json",
+		async:false,
+		success:function(datt){
+		name=datt;
+		}
+		
+	})
+		
+		dat[i].pay_state='已支付'
+		if(dat[i].use_state=='0')
+		{dat[i].use_state='未出票'}
+		else
+		{dat[i].use_state='已出票'}
+		if(dat[i].order_state=='1')
+		{dat[i].order_state='正常使用'}
+		else
+		{dat[i].order_state='已退票'}
+			str+=' <div class="card"><div class="col-xs-3">'+
+                            name+'</div><div class="col-xs-3">'+
+                            dat[i].o_num+'</div><div class="col-xs-3">'+
+                            //<input value="'+dat[i].use_state+'" type="hidden" id="'+dat[i].o_id+'">
+                            dat[i].use_state+'</div><div class="col-xs-3">'+
+                            dat[i].pay_state+'</div><div class="col-xs-3">'+
+                            dat[i].order_state+'</div><div class="col-xs-1">'+
+                            formatTime(dat[i].order_time, 'Y-M-D')+'</div><br/><tr><td><a onclick="deleteOrder('+dat[i].o_id+')" class="aaa">删除此条记录</a></td>'+
+                            '<td><a target="_blank" class="btn btn-round btn-fill btn-info" class="bbb" '+
+                            'onclick="tuikuan(\''+dat[i].o_id+'\',\''+dat[i].use_state+'\')">退款</a></td></tr></div>';
+                            
+//                             'onclick="tuikuan(\''+JSON.stringify(dat[i]).replace("/\"/g", "-")+'\')">退款</a></td></tr></div>';
+		}					
+		}
+		$("#historyrecord").html(str);
+	},
+	error:function(err){
+	console.log(err,"错误");
+	}
+})
+
+
+
+}
+function tuikuan(vvv,b){
+if(b=="未出票"){
+var con;
+con=confirm("您确认要退款吗?"); //在页面上弹出对话框
+if(con==true){
+
+$.ajax({
+	url:"/ssm/tuikuan",
+	data:{
+		"o_id":vvv,
+	},
+	type:"POST",
+	dataType:"json",
+	success:function(data){
+	alert("退款成功！")
+	findAll();
+	}
+})
+}
+else{
+alert("取消退款！")
+}
+}
+else{
+alert("您已经出票，不能申请退款")
+}
+}
+function deleteOrder(a){
+  var con;
+con=confirm("您确认要删除此条记录吗?"); //在页面上弹出对话框
+if(con==true){
+$.ajax({
+	url:"/ssm/deleteOrder",
+	data:{
+		"o_id":a
+	},
+	dataType:"json",
+	success:function(data){
+	alert("删除成功！")
+	findAll();
+	}
+})
+}
+else{
+
+}
+}
+function shang(){
+if($("#shang").val()>1){
+$("#shang").val($("#shang").val()-1);
+// alert($("#shang").val())
+findAll()
+}
+else{
+alert("当前已经是第一页！")
+}
+
+}
+function xia(){
+$.ajax({
+	url:"/ssm/getA",
+	data:{
+		"u_id":$("#d").val()
+	},
+	dataType:"json",
+	success:function(data){
+// 	alert(data)
+	if(parseInt($("#shang").val())<(data/6)){
+	$("#shang").val(parseInt($("#shang").val())+1);
+// 	alert($("#shang").val())
+	findAll()
+	}
+	else{
+	 alert("已经是最后一页！");
+	}
+	}
+	
+})
+
+}
+function changeTou(){
+
+	var formData=new FormData();
+	formData.append('u_id',$("#d").val());
+	formData.append('file',$("#imgfile").get(0).files[0]);
+	$.ajax({
+		url:"/ssm/changeTou",
+		type:"POST",
+		dataType:"json",
+		data:formData,
+		processData:false,
+		contentType:false,
+		success:function(data){
+			if(data=='1'){
+				window.location.href = 'index.html';
+			}
+			else{
+			alert("上传失败！")
+			}
+		},
+		error:function(err){
+			console.log(err);
+		}
+	})
+}
+function popBox() {
+
+        var popBox = document.getElementById("popBox");
+
+        var popLayer = document.getElementById("popLayer");
+
+        popBox.style.display = "block";
+
+        popLayer.style.display = "block";
+
+    };
+
+ 
+
+    /*点击关闭按钮*/
+
+    function closeBox() {
+
+        var popBox = document.getElementById("popBox");
+
+        var popLayer = document.getElementById("popLayer");
+
+        popBox.style.display = "none";
+
+        popLayer.style.display = "none";
+
+    }
+</script>
+
+</body>
+
+   
+
+
+</html>
